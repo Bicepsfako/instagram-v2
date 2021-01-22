@@ -44,7 +44,7 @@ const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
 			let second = now.second();
 
 			let milli = now.millisecond();
-                        var filePath = './resimler/'+minute+'.png';
+                        var filePath = './resimler/'+minute+'.jpg';
                         if (fs.existsSync(filePath)) {
                         fs.unlinkSync(filePath);
                         }
@@ -57,7 +57,7 @@ const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
 					// 15 sağa / // 80 yukarı
 					await delimg.print(font, 80, 20, hour + ":" + minute, 80)
 					await delimg.print(font, 15, 80, date + "/" + month + "/" + year, 40)
-					await delimg.write(`./resimler/${minute}.png`);
+					await delimg.write(`./resimler/${minute}.jpg`);
                                         console.log(filePath);
                                         console.log(fs.existsSync(filePath));
 					await inputElement.uploadFile(filePath);

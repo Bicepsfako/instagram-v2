@@ -1,13 +1,8 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 var Jimp = require('jimp');
-var dayjs = require('dayjs');
-var utc = require('dayjs/plugin/utc') // dependent on utc plugin
-var timezone = require('dayjs/plugin/timezone')
-dayjs.extend(utc)
-dayjs.extend(timezone)
-dayjs.tz.guess()
-dayjs.tz.setDefault("Europe/İstanbul")
+var moment = require('moment');
+moment.locale('tr');
 
 const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36';
 (async() => {
@@ -35,26 +30,27 @@ const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/
 		var inputElement = await sekme2.$('#react-root > section > main > div > article > div > div.LqNQc > div > div > form > input[type="file"]');
 		setInterval(function () {
 
-                        let now = dayjs();
+                        let now = moment();
 
-			let year = now.year();
+			let year = now.get('year');
 
-			let month = now.month();
+			let month = now.get('month');
 
-			let date = now.date();
+			let date = now.get('date');
 
-			let hour = now.hour();
+			let hour = now.get('hour');
 
-			let minute = now.minute();
+			let minute = now.get('minute');
 
-			let second = now.second();
+			let second = now.get('second');
 
-			let milli = now.millisecond();
+			let milli = now.get('millisecond');
+
                         var filePath = './resimler/'+minute+'.jpg';
                         if (fs.existsSync(filePath)) {
                         fs.unlinkSync(filePath);
                         }
-			Jimp.read("https://wallpaperaccess.com/full/4080004.jpg").then(function (delimg) {
+			Jimp.read("https://images.wallpapersden.com/image/download/forest-minimal_amxraG2UmZqaraWkpJRoZ2WtaGdl.jpg").then(function (delimg) {
 				Jimp.loadFont(Jimp.FONT_SANS_64_WHITE).then(async function (font) {
 					await delimg.blur(20)
 					await delimg.resize(320, 320)

@@ -9,7 +9,7 @@ const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/
 
 		const browser = await puppeteer.launch({
 			headless: false,
-                        { args: ['--no-sandbox'] },
+                        args: ['--no-sandbox'],
 			defaultViewport: {
 				width: 1024,
 				height: 768,

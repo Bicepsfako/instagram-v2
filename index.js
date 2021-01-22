@@ -8,13 +8,8 @@ const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/
 
 
 		const browser = await puppeteer.launch({
-			headless: false,
-                        args: ['--no-sandbox'],
-			defaultViewport: {
-				width: 1024,
-				height: 768,
-
-			},
+			headless: true,
+                        args: ['--no-sandbox','--disable-setuid-sandbox', '--disable-accelerated-2d-canvas','--disable-canvas-aa', '--disable-2d-canvas-clip-aa']
 		});
 		const page = await browser.newPage();
 		await page.setUserAgent(USER_AGENT);

@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 var Jimp = require('jimp');
-vat dayjs = require('dayjs');
+var dayjs = require('dayjs');
 var utc = require('dayjs/plugin/utc') // dependent on utc plugin
 var timezone = require('dayjs/plugin/timezone')
 dayjs.extend(utc)

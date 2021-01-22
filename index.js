@@ -3,7 +3,7 @@ const fs = require('fs');
 var Jimp = require('jimp');
 const dayjs = require('dayjs');
 
-const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36';
+const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36';
 (async() => {
 
 
@@ -14,6 +14,8 @@ const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/
 		const page = await browser.newPage();
 		await page.setUserAgent(USER_AGENT);
 		await page.goto('https://www.instagram.com/accounts/edit/');
+                const pageContent = await page.content();
+                console.log(pageContent);
 		await page.waitForSelector('input[name="username"]');
 
 		await page.type('input[name="username"]', process.env.USERNAME);

@@ -58,7 +58,7 @@ const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
 					await delimg.print(font, 80, 20, hour + ":" + minute, 80)
 					await delimg.print(font, 15, 80, date + "/" + month + "/" + year, 40)
 					await delimg.write(`./resimler/${minute}.png`);
-
+                                        console.log(filePath);
 					await inputElement.uploadFile(filePath);
 					console.log("Tarih: " + date + "/" + month + "/" + year + " " + hour + ":" + minute);
 

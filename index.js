@@ -33,8 +33,6 @@ const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
 
                         let now = dayjs();
 
-			console.log(now.toObject());
-
 			let year = now.year();
 
 			let month = now.month();
@@ -47,7 +45,7 @@ const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
 
 			let second = now.second();
 
-			let milli = now.millisecond(); console.log(`Millisecond: ${milli}`);
+			let milli = now.millisecond();
 
 			Jimp.read("https://wallpaperaccess.com/full/4080004.jpg").then(function (delimg) {
 				Jimp.loadFont(Jimp.FONT_SANS_64_WHITE).then(function (font) {

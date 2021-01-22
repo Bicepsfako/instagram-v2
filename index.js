@@ -48,17 +48,18 @@ const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
 			let milli = now.millisecond();
 
 			Jimp.read("https://wallpaperaccess.com/full/4080004.jpg").then(function (delimg) {
-				Jimp.loadFont(Jimp.FONT_SANS_64_WHITE).then(function (font) {
-					delimg.blur(20)
-					delimg.resize(320, 320)
-					delimg.HORIZONTAL_ALIGN_CENTER;
+				Jimp.loadFont(Jimp.FONT_SANS_64_WHITE).then(async function (font) {
+					await delimg.blur(20)
+					await delimg.resize(320, 320)
+					await delimg.HORIZONTAL_ALIGN_CENTER;
 					//80 Sağa / //20 Yukarı
 					// 15 sağa / // 80 yukarı
-					delimg.print(font, 80, 20, hour + ":" + minute, 80)
-					delimg.print(font, 15, 80, date + "/" + month + "/" + year, 40)
-					delimg.write(`./resimler/${minute}.png`);
+					await delimg.print(font, 80, 20, hour + ":" + minute, 80)
+					await delimg.print(font, 15, 80, date + "/" + month + "/" + year, 40)
+					await delimg.write(`./resimler/${minute}.png`);
 
-					inputElement.uploadFile('./resimler/' + minute + '.png').then(() => fs.unlinkSync(`./resimler/${minute}.png`));
+					await inputElement.uploadFile('./resimler/' + minute + '.png');
+                                        await fs.unlinkSync(`./resimler/${minute}.png`);
 					console.log("Tarih: " + date + "/" + month + "/" + year + " " + hour + ":" + minute);
 
 				});

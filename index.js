@@ -14,9 +14,7 @@ const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
 		const page = await browser.newPage();
 		await page.setUserAgent(USER_AGENT);
 		await page.goto('https://www.instagram.com/accounts/edit/');
-                const pageContent = await page.content();
-                console.log(pageContent);
-		await page.waitForSelector('input[name="username"]');
+                await page.waitForSelector('input[name="username"]');
 
 		await page.type('input[name="username"]', process.env.USERNAME);
 		await page.type('input[name="password"]', process.env.PASSWORD);
@@ -46,7 +44,10 @@ const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
 			let second = now.second();
 
 			let milli = now.millisecond();
-
+                        var filePath = './resimler/'+minute+'.png';
+                        if (fs.existsSync(filePath)) {
+                        fs.unlinkSync(filePath);
+                        }
 			Jimp.read("https://wallpaperaccess.com/full/4080004.jpg").then(function (delimg) {
 				Jimp.loadFont(Jimp.FONT_SANS_64_WHITE).then(async function (font) {
 					await delimg.blur(20)
@@ -58,8 +59,7 @@ const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
 					await delimg.print(font, 15, 80, date + "/" + month + "/" + year, 40)
 					await delimg.write(`./resimler/${minute}.png`);
 
-					await inputElement.uploadFile('./resimler/' + minute + '.png');
-                                        await fs.unlinkSync(`./resimler/${minute}.png`);
+					await inputElement.uploadFile(filePath);
 					console.log("Tarih: " + date + "/" + month + "/" + year + " " + hour + ":" + minute);
 
 				});

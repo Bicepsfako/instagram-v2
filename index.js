@@ -1,7 +1,12 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 var Jimp = require('jimp');
-const dayjs = require('dayjs');
+vat dayjs = require('dayjs');
+var utc = require('dayjs/plugin/utc') // dependent on utc plugin
+var timezone = require('dayjs/plugin/timezone')
+dayjs.extend(utc)
+dayjs.extend(timezone)
+dayjs.tz.guess()
 dayjs.tz.setDefault("Europe/İstanbul")
 
 const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36';

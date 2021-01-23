@@ -11,7 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "puppeteer": "^5.5.0",
-    "readline-sync": "^1.4.10",
     "jimp": "^0.16.1",
     "moment": "^2.29.1"
   }

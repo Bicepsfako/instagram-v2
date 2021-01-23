@@ -48,9 +48,7 @@ const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/
 			let milli = now.get('millisecond');
 
                         var filePath = './resimler/'+minute+'.jpg';
-                        if (fs.existsSync(filePath)) {
-                        fs.unlinkSync(filePath);
-                        }
+                        
 			Jimp.read("https://images.wallpapersden.com/image/download/forest-minimal_amxraG2UmZqaraWkpJRoZ2WtaGdl.jpg").then(function (delimg) {
 				Jimp.loadFont(Jimp.FONT_SANS_64_WHITE).then(async function (font) {
 					await delimg.blur(20)
@@ -64,6 +62,9 @@ const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/
                                         console.log(filePath);
                                         console.log(fs.existsSync(filePath));
 					await inputElement.uploadFile(filePath);
+                                        if (fs.existsSync(filePath)) {
+                                        fs.unlinkSync(filePath);
+                                        }
 					console.log("Tarih: " + date + "/" + month + "/" + year + " " + hour + ":" + minute);
 
 				});

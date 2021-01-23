@@ -35,7 +35,8 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 	}
         await page.waitForSelector('#react-root > section > main > div > article > div > div.LqNQc > div > div > form > input[type="file"]');
 	var inputElement = await page.$('#react-root > section > main > div > article > div > div.LqNQc > div > div > form > input[type="file"]');
-	setInterval(function () {
+        var toExactMinute = 60000 - (new Date().getTime() % 60000);
+	function Init() {
 		let now = moment();
 		let minute = now.get('minute');
 		let filePath = `./resimler/${minute}.png`;
@@ -55,7 +56,12 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 
 			});
 		});
-	}, 60000);
+	};
+        setTimeout(function() {
+    setInterval(Init, 60000);
+    Init();
+}, toExactMinute);
+
 })();
 
 function blockingWait(seconds) {

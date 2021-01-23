@@ -22,7 +22,7 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 		await page.type('input[name="password"]', process.env.PASSWORD);
 
 		await page.click('button[type="submit"]');
-		blockingWait(4);
+		blockingWait(10);
 		await page.goto('https://www.instagram.com/accounts/edit/');
 		const title = await page.title();
                 console.log("Instagram Giriş: " + title);

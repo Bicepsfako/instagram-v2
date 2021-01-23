@@ -28,7 +28,7 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 		console.log("Successfull!");
 	} else {
 		console.log("Login failed!");
-		sekme2.close();
+		browser.close();
 	}
 
 	var inputElement = await page.$('#react-root > section > main > div > article > div > div.LqNQc > div > div > form > input[type="file"]');

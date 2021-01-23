@@ -5,7 +5,7 @@ var moment = require('moment');
 let trLocale = require('moment/locale/tr');
 moment.locale('tr',trLocale)
 
-const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36';
+const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36';
 (async() => {
 
 
@@ -26,7 +26,7 @@ const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/
 		await page.goto('https://www.instagram.com/accounts/edit/');
 		const title = await page.title();
                 console.log("Instagram Giriş: " + title ? "Edit • Instagram" : "Login • Instagram");
-		var inputElement = await sekme2.$('#react-root > section > main > div > article > div > div.LqNQc > div > div > form > input[type="file"]');
+		var inputElement = await page.$('#react-root > section > main > div > article > div > div.LqNQc > div > div > form > input[type="file"]');
 		setInterval(function () {
 
                         let now = moment().locale('tr');;

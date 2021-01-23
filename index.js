@@ -29,7 +29,6 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
                 await sekme2.setUserAgent(USER_AGENT);
                 await sekme2.goto('https://www.instagram.com/accounts/edit/');
                 const title = await sekme2.title();
-                console.log("Trying to login Instagram...");
                 if(title === "Edit Profile • Instagram") {
                 console.log("Successfull!");
                 } else {
@@ -41,9 +40,9 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 		setInterval(function () {
                         let now = moment();
                         let minute = now.get('minute');
-                        var filePath = `./resimler/${minute}.png`;
+                        let filePath = `./resimler/${minute}.png`;
                         Jimp.read("https://img.pngio.com/dark-forest-4k-ultra-hd-wallpapers-top-free-dark-forest-4k-ultra-dark-forest-hd-png-3840_2160.png").then(function (delimg) {
-				Jimp.loadFont(Jimp.FONT_SANS_32_WHITE).then(async function (font) {
+				Jimp.loadFont(Jimp.FONT_SANS_64_WHITE).then(async function (font) {
 					await delimg.blur(40)
 					await delimg.resize(320, 320)
 					await delimg.HORIZONTAL_ALIGN_CENTER;

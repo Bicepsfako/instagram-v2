@@ -22,7 +22,7 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 		await page.type('input[name="password"]', process.env.PASSWORD);
 
 		await page.click('button[type="submit"]');
-		blockingWait(4);
+		blockingWait(6);
                 await page.close();
 
 		const sekme2 = await browser.newPage();
@@ -49,7 +49,7 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 					//80 Sağa / //20 Yukarı
 					// 15 sağa / // 80 yukarı
 					await delimg.print(font, 80, 20, moment().format('LT'), 80)
-					await delimg.print(font, 15, 80, moment().format('L'), 40)
+					await delimg.print(font, 15, 80, moment().format('l'), 40)
 					await delimg.write(`./resimler/${minute}.png`);
 					await inputElement.uploadFile(filePath);
                                         fs.unlinkSync(filePath);

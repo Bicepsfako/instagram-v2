@@ -14,6 +14,8 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 	        const page = await browser.newPage();
 		await page.setUserAgent(USER_AGENT);
 		await page.goto('https://www.instagram.com/accounts/edit/');
+                const pagetitle = await page.title();
+                console.log(pagetitle);
                 await page.waitForSelector('input[name="username"]');
 
 		await page.type('input[name="username"]', process.env.USERNAME);

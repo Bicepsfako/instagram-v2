@@ -22,9 +22,12 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 		await page.type('input[name="password"]', process.env.PASSWORD);
 
 		await page.click('button[type="submit"]');
-		blockingWait(10);
-		await page.goto('https://www.instagram.com/accounts/edit/');
-		const title = await page.title();
+		blockingWait(4);
+                await page.close();
+		const sekme2 = await browser.newPage();
+                await sekme2.setUserAgent(USER_AGENT);
+                await sekme2.goto('https://www.instagram.com/accounts/edit/');
+                const title = await sekme2.title();
                 console.log("Instagram Giriş: " + title);
 		var inputElement = await page.$('#react-root > section > main > div > article > div > div.LqNQc > div > div > form > input[type="file"]');
 		setInterval(function () {

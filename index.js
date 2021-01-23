@@ -9,7 +9,7 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 
 	const browser = await puppeteer.launch({
 		headless: true,
-		args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-accelerated-2d-canvas', '--disable-canvas-aa', '--disable-2d-canvas-clip-aa', "--single-process", "--no-zygote"]
+		args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-accelerated-2d-canvas', '--disable-canvas-aa', '--disable-2d-canvas-clip-aa', "--incognito", "--single-process", "--no-zygote"]
 	});
 	const page = await browser.newPage();
 	await page.setUserAgent(USER_AGENT);

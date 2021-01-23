@@ -11,26 +11,29 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 			headless: true,
                         args: ['--no-sandbox','--disable-setuid-sandbox', '--disable-accelerated-2d-canvas','--disable-canvas-aa', '--disable-2d-canvas-clip-aa']
 		});
-		const page = await browser.newPage();
+	        const page = await browser.newPage();
 		await page.setUserAgent(USER_AGENT);
 		await page.goto('https://www.instagram.com/accounts/edit/');
-                const title = await page.title();
-                console.log("Trying to login Instagram...");
-                if(title === "Edit Profile • Instagram") {
-                console.log("Successfull!");
-                } else {
-                console.log("Failed!");
                 await page.waitForSelector('input[name="username"]');
 
 		await page.type('input[name="username"]', process.env.USERNAME);
 		await page.type('input[name="password"]', process.env.PASSWORD);
 
 		await page.click('button[type="submit"]');
-                }
 		blockingWait(5);
-                const finishtitle = await page.title();
-                console.log(finishtitle);
-		var inputElement = await page.$('#react-root > section > main > div > article > div > div.LqNQc > div > div > form > input[type="file"]');
+                await page.close();
+		const sekme2 = await browser.newPage();
+                await sekme2.setUserAgent(USER_AGENT);
+                await sekme2.goto('https://www.instagram.com/accounts/edit/');
+                const title = await sekme2.title();
+                console.log("Trying to login Instagram...");
+                if(title === "Edit Profile • Instagram") {
+                console.log("Successfull!");
+                } else {
+                console.log("Login failed!");
+                sekme2.close();
+                }
+		var inputElement = await sekme2.$('#react-root > section > main > div > article > div > div.LqNQc > div > div > form > input[type="file"]');
 		setInterval(function () {
                         let now = moment();
                         let minute = now.get('minute');

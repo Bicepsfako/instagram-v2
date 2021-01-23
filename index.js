@@ -41,7 +41,7 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 		let filePath = `./resimler/${minute}.png`;
 		Jimp.read(`./resimler/forest.png`).then(function (delimg) {
 			Jimp.loadFont(Jimp.FONT_SANS_64_WHITE).then(async function (font) {
-				await delimg.blur(50)
+				await delimg.blur(30)
 				await delimg.resize(320, 320)
 				await delimg.HORIZONTAL_ALIGN_CENTER;
 				//80 Sağa / //20 Yukarı

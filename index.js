@@ -29,7 +29,7 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
                 await sekme2.goto('https://www.instagram.com/accounts/edit/');
                 const title = await sekme2.title();
                 console.log("Instagram Giriş: " + title);
-		var inputElement = await page.$('#react-root > section > main > div > article > div > div.LqNQc > div > div > form > input[type="file"]');
+		var inputElement = await sekme2.$('#react-root > section > main > div > article > div > div.LqNQc > div > div > form > input[type="file"]');
 		setInterval(function () {
 
                         let now = moment().locale('tr');;

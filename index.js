@@ -26,9 +26,8 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 		await page.type('input[name="password"]', process.env.PASSWORD);
 
 		await page.click('button[type="submit"]');
-		blockingWait(5);
-                await page.goto('https://www.instagram.com/accounts/edit/');
                 }
+		blockingWait(5);
                 const finishtitle = await page.title();
                 console.log(finishtitle);
 		var inputElement = await page.$('#react-root > section > main > div > article > div > div.LqNQc > div > div > form > input[type="file"]');

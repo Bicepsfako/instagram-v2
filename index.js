@@ -25,7 +25,7 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 		blockingWait(4);
 		await page.goto('https://www.instagram.com/accounts/edit/');
 		const title = await page.title();
-                console.log("Instagram Giriş: " + title ? "Edit • Instagram" : "Login • Instagram");
+                console.log("Instagram Giriş: " + title);
 		var inputElement = await page.$('#react-root > section > main > div > article > div > div.LqNQc > div > div > form > input[type="file"]');
 		setInterval(function () {
 

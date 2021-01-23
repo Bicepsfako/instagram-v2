@@ -13,6 +13,16 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 		});
 	        const page = await browser.newPage();
 		await page.setUserAgent(USER_AGENT);
+                await page.setRequestInterception(true);
+    
+                page.on('request', (req) => {
+                if(req.resourceType() == 'stylesheet' || req.resourceType() == 'font' || req.resourceType() == 'image'){
+                req.abort();
+                }
+                else {
+                req.continue();
+                }
+                });
 		await page.goto('https://www.instagram.com/accounts/edit/');
                 const pagetitle = await page.title();
                 console.log(pagetitle);
@@ -27,6 +37,16 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 
 		const sekme2 = await browser.newPage();
                 await sekme2.setUserAgent(USER_AGENT);
+                await sekme2.setRequestInterception(true);
+    
+                sekme2.on('request', (req) => {
+                if(req.resourceType() == 'stylesheet' || req.resourceType() == 'font' || req.resourceType() == 'image'){
+                req.abort();
+                }
+                else {
+                req.continue();
+                }
+                });
                 await sekme2.goto('https://www.instagram.com/accounts/edit/');
                 const title = await sekme2.title();
                 if(title === "Edit Profile • Instagram") {

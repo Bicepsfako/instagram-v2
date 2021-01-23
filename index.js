@@ -7,77 +7,75 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 (async() => {
 
 
-		const browser = await puppeteer.launch({
-			headless: true,
-                        args: ['--no-sandbox','--disable-setuid-sandbox', '--disable-accelerated-2d-canvas','--disable-canvas-aa', '--disable-2d-canvas-clip-aa']
-		});
-	        const page = await browser.newPage();
-		await page.setUserAgent(USER_AGENT);
-                await page.setRequestInterception(true);
-    
-                page.on('request', (req) => {
-                if(req.resourceType() == 'stylesheet' || req.resourceType() == 'font' || req.resourceType() == 'image'){
-                req.abort();
-                }
-                else {
-                req.continue();
-                }
-                });
-		await page.goto('https://www.instagram.com/accounts/edit/');
-                const pagetitle = await page.title();
-                console.log(pagetitle);
-                await page.waitForSelector('input[name="username"]');
+	const browser = await puppeteer.launch({
+		headless: true,
+		args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-accelerated-2d-canvas', '--disable-canvas-aa', '--disable-2d-canvas-clip-aa', "--single-process", "--no-zygote"]
+	});
+	const page = await browser.newPage();
+	await page.setUserAgent(USER_AGENT);
+	await page.setRequestInterception(true);
 
-		await page.type('input[name="username"]', process.env.USERNAME);
-		await page.type('input[name="password"]', process.env.PASSWORD);
+	page.on('request', (req) => {
+		if (req.resourceType() == 'stylesheet' || req.resourceType() == 'font' || req.resourceType() == 'image') {
+			req.abort();
+		} else {
+			req.continue();
+		}
+	});
+	await page.goto('https://www.instagram.com/accounts/edit/');
+	const pagetitle = await page.title();
+	console.log(pagetitle);
+	await page.waitForSelector('input[name="username"]');
 
-		await page.click('button[type="submit"]');
-		blockingWait(6);
-                await page.close();
+	await page.type('input[name="username"]', process.env.USERNAME);
+	await page.type('input[name="password"]', process.env.PASSWORD);
 
-		const sekme2 = await browser.newPage();
-                await sekme2.setUserAgent(USER_AGENT);
-                await sekme2.setRequestInterception(true);
-    
-                sekme2.on('request', (req) => {
-                if(req.resourceType() == 'stylesheet' || req.resourceType() == 'font' || req.resourceType() == 'image'){
-                req.abort();
-                }
-                else {
-                req.continue();
-                }
-                });
-                await sekme2.goto('https://www.instagram.com/accounts/edit/');
-                const title = await sekme2.title();
-                if(title === "Edit Profile • Instagram") {
-                console.log("Successfull!");
-                } else {
-                console.log("Login failed!");
-                sekme2.close();
-                }
+	await page.click('button[type="submit"]');
+	blockingWait(6);
+	await page.close();
 
-		var inputElement = await sekme2.$('#react-root > section > main > div > article > div > div.LqNQc > div > div > form > input[type="file"]');
-		setInterval(function () {
-                        let now = moment();
-                        let minute = now.get('minute');
-                        let filePath = `./resimler/${minute}.png`;
-                        Jimp.read(`./resimler/bg.png`).then(function (delimg) {
-				Jimp.loadFont(Jimp.FONT_SANS_64_WHITE).then(async function (font) {
-					await delimg.blur(50)
-					await delimg.resize(320, 320)
-					await delimg.HORIZONTAL_ALIGN_CENTER;
-					//80 Sağa / //20 Yukarı
-					// 15 sağa / // 80 yukarı
-					await delimg.print(font, 80, 20, moment().format('LT'), 80)
-					await delimg.print(font, 15, 80, moment().format('l'), 40)
-					await delimg.write(`./resimler/${minute}.png`);
-					await inputElement.uploadFile(filePath);
-                                        fs.unlinkSync(filePath);
-					console.log("Tarih: " + moment().format('LLL'));
+	const sekme2 = await browser.newPage();
+	await sekme2.setUserAgent(USER_AGENT);
+	await sekme2.setRequestInterception(true);
 
-				});
+	sekme2.on('request', (req) => {
+		if (req.resourceType() == 'stylesheet' || req.resourceType() == 'font' || req.resourceType() == 'image') {
+			req.abort();
+		} else {
+			req.continue();
+		}
+	});
+	await sekme2.goto('https://www.instagram.com/accounts/edit/');
+	const title = await sekme2.title();
+	if (title === "Edit Profile • Instagram") {
+		console.log("Successfull!");
+	} else {
+		console.log("Login failed!");
+		sekme2.close();
+	}
+
+	var inputElement = await sekme2.$('#react-root > section > main > div > article > div > div.LqNQc > div > div > form > input[type="file"]');
+	setInterval(function () {
+		let now = moment();
+		let minute = now.get('minute');
+		let filePath = `./resimler/${minute}.png`;
+		Jimp.read(`./resimler/bg.png`).then(function (delimg) {
+			Jimp.loadFont(Jimp.FONT_SANS_64_WHITE).then(async function (font) {
+				await delimg.blur(50)
+				await delimg.resize(320, 320)
+				await delimg.HORIZONTAL_ALIGN_CENTER;
+				//80 Sağa / //20 Yukarı
+				// 15 sağa / // 80 yukarı
+				await delimg.print(font, 80, 20, moment().format('LT'), 80)
+				await delimg.print(font, 15, 80, moment().format('l'), 40)
+				await delimg.write(`./resimler/${minute}.png`);
+				await inputElement.uploadFile(filePath);
+				fs.unlinkSync(filePath);
+				console.log("Tarih: " + moment().format('LLL'));
+
 			});
-		}, 60000);
+		});
+	}, 60000);
 })();
 
 function blockingWait(seconds) {

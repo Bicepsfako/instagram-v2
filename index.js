@@ -29,7 +29,7 @@ const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/
 		var inputElement = await sekme2.$('#react-root > section > main > div > article > div > div.LqNQc > div > div > form > input[type="file"]');
 		setInterval(function () {
 
-                        let now = moment();
+                        let now = moment().locale('tr');;
 
 			let year = now.get('year');
 

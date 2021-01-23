@@ -44,9 +44,9 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
                         var filePath = `./resimler/${minute}.png`;
                         Jimp.read("https://img.pngio.com/dark-forest-4k-ultra-hd-wallpapers-top-free-dark-forest-4k-ultra-dark-forest-hd-png-3840_2160.png").then(function (delimg) {
 				Jimp.loadFont(Jimp.FONT_SANS_32_WHITE).then(async function (font) {
-					await delimg.blur(20)
-					//await delimg.resize(320, 320)
-					//await delimg.HORIZONTAL_ALIGN_CENTER;
+					await delimg.blur(40)
+					await delimg.resize(320, 320)
+					await delimg.HORIZONTAL_ALIGN_CENTER;
 					//80 Sağa / //20 Yukarı
 					// 15 sağa / // 80 yukarı
 					await delimg.print(font, 80, 20, moment().format('LT'), 80)

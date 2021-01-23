@@ -52,7 +52,7 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
                                         if (fs.existsSync(filePath)) {
                                         fs.unlinkSync(filePath);
                                         }
-					console.log("Tarih: " + moment().format('LLL'););
+					console.log("Tarih: " + moment().format('LLL'));
 
 				});
 			});

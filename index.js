@@ -24,6 +24,8 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 
 	await page.click('button[type="submit"]');
         await page.waitForNavigation({waitUntil: 'networkidle2'});
+        await page.goto('https://www.instagram.com/accounts/edit/');
+        await page.waitForNavigation();
 	const title = await page.title();
         console.log(title);
 	if (title === "Edit Profile • Instagram") {

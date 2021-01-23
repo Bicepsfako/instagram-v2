@@ -23,11 +23,9 @@ const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/
 
 		await page.click('button[type="submit"]');
 		blockingWait(4);
-		await page.close();
-		const sekme2 = await browser.newPage();
-		await sekme2.setUserAgent(USER_AGENT);
-		await sekme2.goto('https://www.instagram.com/accounts/edit/');
-		const pageTitle = await sekme2.title();
+		await page.goto('https://www.instagram.com/accounts/edit/');
+		const title = await page.title();
+                console.log("Instagram Giriş: " + title ? "Edit • Instagram" : "Login • Instagram");
 		var inputElement = await sekme2.$('#react-root > section > main > div > article > div > div.LqNQc > div > div > form > input[type="file"]');
 		setInterval(function () {
 
@@ -59,8 +57,6 @@ const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/
 					await delimg.print(font, 80, 20, hour + ":" + minute, 80)
 					await delimg.print(font, 15, 80, date + "/" + month + "/" + year, 40)
 					await delimg.write(`./resimler/${minute}.jpg`);
-                                        console.log(filePath);
-                                        console.log(fs.existsSync(filePath));
 					await inputElement.uploadFile(filePath);
                                         if (fs.existsSync(filePath)) {
                                         fs.unlinkSync(filePath);

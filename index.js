@@ -2,9 +2,8 @@ const puppeteer = require('puppeteer');
 const fs = require('fs');
 var Jimp = require('jimp');
 var moment = require('moment');
-let trLocale = require('moment/locale/tr');
-moment.locale('tr',trLocale)
-
+moment.locale('tr')
+console.log(moment().format('LT'));
 const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36';
 (async() => {
 

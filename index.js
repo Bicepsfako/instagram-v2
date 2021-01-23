@@ -39,7 +39,7 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 		let now = moment();
 		let minute = now.get('minute');
 		let filePath = `./resimler/${minute}.png`;
-		Jimp.read(`./resimler/bg.png`).then(function (delimg) {
+		Jimp.read(`./resimler/forest.png`).then(function (delimg) {
 			Jimp.loadFont(Jimp.FONT_SANS_64_WHITE).then(async function (font) {
 				await delimg.blur(50)
 				await delimg.resize(320, 320)

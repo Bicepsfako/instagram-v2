@@ -13,15 +13,7 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 	});
 	const page = await browser.newPage();
 	await page.setUserAgent(USER_AGENT);
-	await page.setRequestInterception(true);
 
-	page.on('request', (req) => {
-		if (req.resourceType() == 'stylesheet' || req.resourceType() == 'font' || req.resourceType() == 'image') {
-			req.abort();
-		} else {
-			req.continue();
-		}
-	});
 	await page.goto('https://www.instagram.com/accounts/edit/');
         await page.waitForNavigation({waitUntil: "domcontentloaded"});
 	await page.waitForSelector('input[name="username"]');
@@ -30,22 +22,8 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 	await page.type('input[name="password"]', process.env.PASSWORD);
 
 	await page.click('button[type="submit"]');
-	blockingWait(6);
-	await page.close();
-
-	const sekme2 = await browser.newPage();
-	await sekme2.setUserAgent(USER_AGENT);
-	await sekme2.setRequestInterception(true);
-
-	sekme2.on('request', (req) => {
-		if (req.resourceType() == 'stylesheet' || req.resourceType() == 'font' || req.resourceType() == 'image') {
-			req.abort();
-		} else {
-			req.continue();
-		}
-	});
-	await sekme2.goto('https://www.instagram.com/accounts/edit/');
-	const title = await sekme2.title();
+        await page.waitForNavigation();
+	const title = await page.title();
 	if (title === "Edit Profile • Instagram") {
 		console.log("Successfull!");
 	} else {
@@ -53,7 +31,7 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 		sekme2.close();
 	}
 
-	var inputElement = await sekme2.$('#react-root > section > main > div > article > div > div.LqNQc > div > div > form > input[type="file"]');
+	var inputElement = await page.$('#react-root > section > main > div > article > div > div.LqNQc > div > div > form > input[type="file"]');
 	setInterval(function () {
 		let now = moment();
 		let minute = now.get('minute');
